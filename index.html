@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juyoung Kim, PhD — Photonics &amp; Optical Systems Engineer</title>
+<meta name="description" content="Portfolio of Juyoung Kim, PhD — photonics and optical systems engineer. Nanophotonics, silicon photonics, AR/VR display optics, and computational vision.">
+<style>
+  :root{
+    --bg:#0a0c10; --bg2:#0f1218; --panel:#12161e; --panel2:#161b25;
+    --line:#232a36; --line2:#2e3644;
+    --ink:#eef2f8; --mut:#a4afbf; --dim:#6f7b8c;
+    --accent:#5ad1ff; --accent2:#f0b866; --hot:#ff6a4d;
+    --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  em{font-style:italic;color:var(--mut)}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,12,16,.72);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+  .navwrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:var(--serif);font-size:22px;letter-spacing:.5px;font-weight:600}
+  .brand span{color:var(--accent)}
+  .nav nav{display:flex;gap:26px}
+  .nav nav a{font-size:14px;color:var(--mut);letter-spacing:.2px;transition:color .2s}
+  .nav nav a:hover{color:var(--accent)}
+  @media(max-width:760px){.nav nav{display:none}}
+
+  /* hero */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;
+    transform:scale(1.05);filter:saturate(1.05)}
+  .hero-veil{position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(8,9,12,.94) 0%,rgba(8,9,12,.82) 42%,rgba(8,9,12,.45) 78%,rgba(8,9,12,.6) 100%),
+    linear-gradient(0deg,rgba(8,9,12,.9),rgba(8,9,12,.2) 40%)}
+  .hero-inner{position:relative;padding:70px 28px}
+  .eyebrow{font-size:13px;letter-spacing:3.5px;text-transform:uppercase;color:var(--accent);margin:0 0 18px}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(44px,8vw,92px);
+    line-height:1.02;margin:0 0 22px;letter-spacing:-1px}
+  .hero h1 .phd{color:var(--accent2);font-style:italic;font-size:.5em;vertical-align:middle;font-weight:400}
+  .lede{font-size:clamp(18px,2.4vw,23px);max-width:640px;color:#dbe2ec;margin:0 0 26px;line-height:1.5}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:9px;max-width:660px;margin-bottom:32px}
+  .hero-tags span{font-size:12.5px;color:var(--mut);border:1px solid var(--line2);
+    padding:6px 13px;border-radius:20px;background:rgba(255,255,255,.02)}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:13px 26px;border-radius:30px;font-size:15px;font-weight:500;transition:.2s}
+  .btn.primary{background:var(--accent);color:#04252f}
+  .btn.primary:hover{background:#7fdcff}
+  .btn.ghost{border:1px solid var(--line2);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-credit{position:absolute;right:28px;bottom:22px;max-width:300px;font-size:11.5px;
+    color:var(--dim);text-align:right;line-height:1.5;margin:0}
+  @media(max-width:760px){.hero-credit{display:none}}
+
+  /* sections */
+  .section{padding:92px 0;border-top:1px solid var(--line)}
+  .section.alt{background:var(--bg2)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
+  .sec-head .num{font-family:var(--serif);font-size:15px;color:var(--accent);letter-spacing:1px}
+  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,44px);margin:0;letter-spacing:-.5px}
+  .sec-intro{max-width:640px;color:var(--mut);margin:-14px 0 40px;font-size:17px}
+  .sec-intro a{color:var(--accent);border-bottom:1px solid rgba(90,209,255,.3)}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:54px}
+  .about-lead p{margin:0 0 20px;font-size:18px;color:#d3dae6}
+  .about-facts{border-left:1px solid var(--line2);padding-left:26px;display:flex;flex-direction:column;gap:18px;align-self:start}
+  .about-facts div{display:flex;flex-direction:column;gap:3px}
+  .about-facts .k{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim)}
+  .about-facts .v{font-size:15.5px;color:var(--ink)}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:34px}
+    .about-facts{border-left:0;padding-left:0;border-top:1px solid var(--line2);padding-top:26px}}
+
+  /* timeline */
+  .timeline{list-style:none;margin:0;padding:0;position:relative}
+  .timeline:before{content:"";position:absolute;left:150px;top:6px;bottom:6px;width:1px;background:var(--line2)}
+  .timeline li{display:grid;grid-template-columns:150px 1fr;gap:40px;padding:0 0 40px;position:relative}
+  .timeline li:last-child{padding-bottom:0}
+  .tl-when{font-size:14px;color:var(--accent2);text-align:right;padding-top:2px;font-variant-numeric:tabular-nums}
+  .tl-body{position:relative}
+  .tl-body:before{content:"";position:absolute;left:-30px;top:9px;width:9px;height:9px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent)}
+  .tl-body h3{font-family:var(--serif);font-size:22px;font-weight:600;margin:0 0 3px;line-height:1.25}
+  .tl-body h3 .org{display:block;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--accent);letter-spacing:.3px;margin-top:5px}
+  .tl-body .role{font-size:13.5px;color:var(--dim);margin:0 0 10px;letter-spacing:.2px}
+  .tl-body p:last-child{margin:0;color:var(--mut);font-size:16px}
+  .tl-media{margin-top:18px;max-width:560px}
+  .video{position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;
+    border:1px solid var(--line2);background:#000}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%}
+  .ytlite{cursor:pointer}
+  .ytlite .yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    transition:.3s;filter:brightness(.82)}
+  .ytlite:hover .yt-thumb{filter:brightness(1);transform:scale(1.03)}
+  .ytlite .yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:74px;height:52px;border-radius:14px;background:rgba(20,22,28,.75);
+    border:1px solid rgba(255,255,255,.25);transition:.25s}
+  .ytlite:hover .yt-play{background:var(--hot);border-color:var(--hot)}
+  .ytlite .yt-play:after{content:"";position:absolute;left:52%;top:50%;transform:translate(-50%,-50%);
+    border-style:solid;border-width:11px 0 11px 19px;border-color:transparent transparent transparent #fff}
+  .media-cap{margin:10px 0 0!important;font-size:12.5px!important;color:var(--dim)!important}
+  .media-cap a{color:var(--accent);border-bottom:1px solid rgba(90,209,255,.3)}
+  @media(max-width:680px){
+    .timeline:before{left:6px}
+    .timeline li{grid-template-columns:1fr;gap:6px;padding-left:30px}
+    .tl-when{text-align:left}
+    .tl-body:before{left:-24px}}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .g-item{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    display:flex;flex-direction:column;transition:.25s}
+  .g-item:hover{border-color:var(--line2);transform:translateY(-3px)}
+  .g-item.wide{grid-column:span 2}
+  .g-img{background:#05070a;display:flex;align-items:center;justify-content:center}
+  .g-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .g-img.light{background:#fff}
+  .g-img.light img{object-fit:contain;max-height:420px}
+  .g-item.wide .g-img img{max-height:520px;object-fit:contain;background:#05070a}
+  figcaption{padding:22px 24px 24px}
+  figcaption h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:0 0 8px}
+  figcaption p{margin:0 0 12px;color:var(--mut);font-size:15.5px;line-height:1.55}
+  .g-cite{font-size:12.5px;color:var(--accent);letter-spacing:.3px}
+  @media(max-width:760px){.gallery{grid-template-columns:1fr}.g-item.wide{grid-column:span 1}}
+
+  /* publications */
+  .pub-group{font-family:var(--serif);font-size:15px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--accent2);border-bottom:1px solid var(--line);padding-bottom:10px;margin:44px 0 6px}
+  .pubs{list-style:none;margin:0;padding:0}
+  .pubs.featured li{padding:20px 0;border-bottom:1px solid var(--line)}
+  .pubs.featured .pt{margin:0 0 5px;font-size:17.5px;line-height:1.4}
+  .pubs.featured .tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:1px;
+    color:var(--accent);border:1px solid var(--line2);border-radius:12px;padding:2px 9px;margin-left:8px;vertical-align:2px}
+  .pubs.featured .pm{margin:0 0 6px;font-size:14.5px;color:var(--mut)}
+  .pubs.featured .pn{margin:0;font-size:15px;color:var(--dim)}
+  .pubs.full{counter-reset:p;margin-top:14px}
+  .pubs.full li{counter-increment:p;position:relative;padding:11px 0 11px 40px;border-bottom:1px solid var(--line);
+    font-size:15px;color:var(--mut)}
+  .pubs.full li:before{content:counter(p);position:absolute;left:0;top:11px;font-variant-numeric:tabular-nums;
+    font-size:13px;color:var(--accent);font-family:var(--serif)}
+  .pubs.full b{color:var(--ink);font-weight:600}
+  .pdfdl{display:inline-block;font-size:11.5px;letter-spacing:.4px;color:var(--accent);
+    border:1px solid var(--line2);border-radius:11px;padding:1px 9px;margin-left:6px;
+    vertical-align:1px;transition:.2s;white-space:nowrap}
+  .pdfdl:hover{border-color:var(--accent);background:rgba(90,209,255,.1)}
+  .pubs.full .pdfdl{margin-left:4px}
+
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px;transition:.25s}
+  .card:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .card .yr{font-family:var(--serif);font-size:26px;color:var(--accent2)}
+  .card .chip{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);
+    border:1px solid var(--line2);border-radius:12px;padding:3px 10px}
+  .card h3{font-family:var(--serif);font-size:20px;font-weight:600;margin:0 0 4px;line-height:1.25}
+  .card .place{font-size:13.5px;color:var(--accent);margin:0 0 12px}
+  .card p:last-child{margin:0;font-size:15px;color:var(--mut)}
+  .archive-note{margin-top:26px;font-size:14px;color:var(--dim);border-left:2px solid var(--line2);padding-left:16px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+
+  /* skills */
+  .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .skill-col h3{font-family:var(--serif);font-size:18px;margin:0 0 10px;color:var(--ink)}
+  .skill-col p{margin:0;font-size:14.5px;color:var(--mut);line-height:1.6}
+  .edu{margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+  .edu h3{font-family:var(--serif);font-size:18px;margin:0 0 8px}
+  .edu p{margin:0;color:var(--mut)}
+  @media(max-width:820px){.skill-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.skill-grid{grid-template-columns:1fr}}
+
+  /* contact */
+  .contact{text-align:center;padding-bottom:110px}
+  .contact .sec-head{justify-content:center}
+  .contact-lede{color:var(--mut);max-width:520px;margin:0 auto 28px}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+  .contact-links a{border:1px solid var(--line2);border-radius:30px;padding:12px 26px;font-size:15px;transition:.2s}
+  .contact-links a:hover{border-color:var(--accent);color:var(--accent)}
+  .foot{font-size:13px;color:var(--dim)}
+</style>
+</head>
+<body>
+<!-- BODY -->
+<header class="nav">
+  <div class="wrap navwrap">
+    <a href="#top" class="brand">JK<span>·</span></a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Selected Work</a>
+      <a href="#publications">Publications</a>
+      <a href="#archive">Career Archive</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="hero-bg" style="background-image:url('images/hero_field.jpg')"></div>
+  <div class="hero-veil"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Photonics &amp; Optical Systems Engineer</p>
+    <h1>Juyoung Kim, <span class="phd">PhD</span></h1>
+    <p class="lede">Fifteen years turning light into measurement — from nanophotonic lasers and silicon photonics to AR/VR display optics and the optics of vision itself.</p>
+    <div class="hero-tags">
+      <span>Nanophotonics</span><span>Silicon Photonics</span><span>AR/VR Displays</span><span>Ultrafast Optical Sensing</span><span>Computational Vision</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn primary" href="#work">See the work</a>
+      <a class="btn ghost" href="#publications">Publications</a>
+    </div>
+    <p class="hero-credit">Above: FDTD field simulation of a microfiber-coupled photonic-crystal resonator — featured as a journal cover, <em>Laser &amp; Photonics Reviews</em>.</p>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about-lead">
+        <p>I'm a photonics and optical-systems engineer who works across the full development cycle — device physics and simulation, nanofabrication, optical characterization, system validation, and hardware integration. My career has moved from the smallest optical resonators to the systems that put light to work at scale.</p>
+        <p>Today I lead end-to-end optical performance modeling and validation for AR/VR displays at Apple, informing architecture and hardware decisions across XR optical stacks. Along the way I've built time-of-flight optical brain-sensing systems, custom high-speed two-photon microscopes for recording live neural activity, and heterogeneously integrated nanolasers on silicon.</p>
+      </div>
+      <aside class="about-facts">
+        <div><span class="k">Based in</span><span class="v">Campbell, California</span></div>
+        <div><span class="k">Focus</span><span class="v">Optical modeling, system validation, device physics</span></div>
+        <div><span class="k">PhD</span><span class="v">Physics, KAIST (2011)</span></div>
+        <div><span class="k">Publications</span><span class="v">16 papers + book chapter</span></div>
+        <div><span class="k">Patents</span><span class="v">2 pending (inventor)</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">02</span><h2>Experience</h2></div>
+    <ol class="timeline">
+      <li>
+        <div class="tl-when">2020 — Present</div>
+        <div class="tl-body">
+          <h3>Display Exploration Engineer <span class="org">Apple — Vision Display Group</span></h3>
+          <p class="role">AR/VR Optical Module</p>
+          <p>Define key front-of-screen specifications and drive optical-architecture decisions through tradeoff studies across XR optical stacks. Architected a scalable Python-based simulation pipeline for end-to-end XR visual-performance modeling and built validation platforms that accelerated design iteration. Inventor on two pending patents.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tl-when">2019 — 2020</div>
+        <div class="tl-body">
+          <h3>Optical Scientist <span class="org">Meta — Facebook Reality Labs</span></h3>
+          <p class="role">Optical Brain–Computer Interface</p>
+          <p>Developed a multi-channel time-of-flight diffuse optical sensing system — fiber arrays, pulsed lasers, photon-counting detectors, and time-taggers — for deep-tissue brain-activity recording. Led system validation across SNR, dynamic range, timing jitter, and impulse response.</p>
+          <div class="tl-media">
+            <div class="video ytlite" data-id="-lmAJUIo1Mg" data-start="1251" role="button" tabindex="0" aria-label="Play video">
+              <img class="yt-thumb" src="https://i.ytimg.com/vi/-lmAJUIo1Mg/hqdefault.jpg" alt="Facebook Reality Labs optical brain–computer interface talk">
+              <span class="yt-play" aria-hidden="true"></span>
+            </div>
+            <p class="media-cap">Facebook Reality Labs presents the time-of-flight optical brain–computer interface program (talk jumps to the relevant segment). <a href="https://youtu.be/-lmAJUIo1Mg?t=1251" target="_blank" rel="noopener">Watch on YouTube ↗</a></p>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="tl-when">2013 — 2019</div>
+        <div class="tl-body">
+          <h3>Research Scientist &amp; Postdoctoral Researcher <span class="org">Stanford University — Neuroscience</span></h3>
+          <p class="role">Computational Vision · Multi-Photon Retinal Imaging (Baccus Lab)</p>
+          <p>Designed and built a custom high-speed multi-photon imaging system — ultrafast lasers, laser scanner, electro-optic modulator, precision fiber coupling — for large-scale neural recording in live retina. Developed automated image-processing pipelines and interpretable CNN models to characterize nonlinear retinal information processing.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tl-when">2011 — 2012</div>
+        <div class="tl-body">
+          <h3>Postdoctoral Researcher <span class="org">KAIST — Mechanical Engineering</span></h3>
+          <p class="role">Silicon Photonics Integration (Bumki Min Lab)</p>
+          <p>Developed heterogeneous integration of III–V nanolasers onto silicon photonic integrated circuits via dry transfer printing, demonstrating direct coupling into silicon waveguides and continuous-wave lasing on silica-on-silicon platforms.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tl-when">2009</div>
+        <div class="tl-body">
+          <h3>Visiting Researcher <span class="org">University of Arizona — Optical Sciences</span></h3>
+          <p class="role">Silicon Optical Resonators (Hyatt Gibbs Lab, QNOS)</p>
+          <p>Built a fiber-coupled optical spectroscopy system for silicon high-Q photonic-crystal nano-resonators in the telecom band.</p>
+        </div>
+      </li>
+      <li>
+        <div class="tl-when">2007 — 2011</div>
+        <div class="tl-body">
+          <h3>PhD Researcher <span class="org">KAIST — Physics</span></h3>
+          <p class="role">Photonic Crystal Resonators &amp; Fiber Coupling (Yong-Hee Lee Lab)</p>
+          <p>Demonstrated microfiber-based optical I/O for InP photonic-crystal resonators at telecom wavelengths, developed 3D FDTD models of evanescent coupling, and fabricated III–V and silicon nanophotonic devices using e-beam lithography, CAIBE, RIE, and wet etching.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="work" class="section">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">03</span><h2>Selected Work</h2></div>
+    <p class="sec-intro">A visual sampling of the research — device physics rendered, fabricated, and measured. Each of these appeared in a peer-reviewed journal; several were selected as cover features.</p>
+
+    <div class="gallery">
+      <figure class="g-item wide">
+        <div class="g-img"><img src="images/nanolaser.jpg" alt="SEM and lasing characterization of a printed nanobeam laser"></div>
+        <figcaption>
+          <h3>A printed nanobeam laser on silicon</h3>
+          <p>III–V nanolasers dry-transfer-printed onto a silica-on-silicon platform, reaching low-threshold continuous-wave lasing at telecom wavelengths — SEM of the transferred beam, its single-mode spectrum, and the L–L / linewidth transition through threshold.</p>
+          <span class="g-cite">Optics Express 22, 12115 (2014)</span>
+        </figcaption>
+      </figure>
+
+      <figure class="g-item">
+        <div class="g-img"><img src="images/fdtd_modes.jpg" alt="FDTD field maps of a reconfigurable photonic-crystal slab resonator"></div>
+        <figcaption>
+          <h3>Reconfigurable slab resonator</h3>
+          <p>3D FDTD field maps establishing k-space design principles for efficient photon collection from a microfiber-coupled photonic-crystal slab cavity.</p>
+          <span class="g-cite">J. Opt. Soc. Am. B 29, 2669 (2012) · corresponding author</span>
+        </figcaption>
+      </figure>
+
+      <figure class="g-item">
+        <div class="g-img light"><img src="images/cover_lpr.jpg" alt="Laser & Photonics Reviews journal cover"></div>
+        <figcaption>
+          <h3>On-demand photonic-crystal resonators</h3>
+          <p>An invited review of reconfigurable nanocavities. My fiber-coupling FDTD simulation was chosen for the journal's front cover.</p>
+          <span class="g-cite">Laser &amp; Photonics Rev. 5, 479 (2011) · cover feature</span>
+        </figcaption>
+      </figure>
+
+      <figure class="g-item">
+        <div class="g-img light"><img src="images/cover_metamaterial.jpg" alt="Advanced Materials inside front cover, stretchable metamaterial"></div>
+        <figcaption>
+          <h3>Reversibly stretchable THz metamaterial</h3>
+          <p>A tunable terahertz metamaterial with wrinkled layouts — selected as an inside front cover.</p>
+          <span class="g-cite">Adv. Mater. 24, 3491 (2012) · cover feature</span>
+        </figcaption>
+      </figure>
+
+      <figure class="g-item wide">
+        <div class="g-img"><img src="images/sfn_poster.jpg" alt="SFN 2018 poster: functional heterogeneity of amacrine cells"></div>
+        <figcaption>
+          <h3>Reading the living retina with light</h3>
+          <p>A custom laser-scanning two-photon microscope, built to optically record neural activity in live retina, revealed functional subtypes among genetically targeted inhibitory neurons — combining ultrafast optics, red-shifted calcium imaging, and machine-learning analysis.</p>
+          <span class="g-cite">Society for Neuroscience, San Diego, 2018</span>
+        </figcaption>
+      </figure>
+
+      <figure class="g-item">
+        <div class="g-img"><img src="images/retina_clusters.jpg" alt="Functional clustering map of retinal amacrine cells"></div>
+        <figcaption>
+          <h3>Functional cell fingerprints</h3>
+          <p>Calcium responses from 150 cells clustered into seven distinct functional groups — spatially anti-correlated, hinting at a spatiotemporal neural code readable by optics.</p>
+          <span class="g-cite">Two-photon calcium imaging · Baccus Lab</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="section alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">04</span><h2>Publications</h2></div>
+    <p class="sec-intro">Peer-reviewed journal articles, a book chapter, and preprints. <a href="https://goo.gl/biYZTG" target="_blank" rel="noopener">Google Scholar profile →</a></p>
+
+    <h3 class="pub-group">Selected &amp; highlighted</h3>
+    <ol class="pubs featured">
+      <li>
+        <p class="pt"><strong>Two-dimensionally relocatable microfiber-coupled photonic crystal resonator</strong> <span class="tag">first &amp; corresponding author</span></p>
+        <p class="pm">Ju-Young Kim, M.-K. Kim, M.-K. Seo, S.-H. Kwon, J.-H. Shin, Y.-H. Lee · <em>Optics Express</em> 17, 13009 (2009) <a class="pdfdl" href="publications/2009-Kim-OE-2D-relocatable-microfiber-PC-resonator.pdf" target="_blank" rel="noopener">PDF</a></p>
+        <p class="pn">Design, FDTD simulation, and experimental demonstration of microfiber-based optical I/O for photonic-crystal resonators — efficient photon in/out-coupling and spectral tuning.</p>
+      </li>
+      <li>
+        <p class="pt"><strong>A printed nanobeam laser on a SiO&#8322;/Si substrate for low-threshold continuous-wave operation</strong></p>
+        <p class="pm">I. Karnadi, J. Son, Ju-Young Kim, H. Jang, S. Lee, K. S. Kim, B. Min, Y.-H. Lee · <em>Optics Express</em> 22, 12115 (2014) <a class="pdfdl" href="publications/2014-Karnadi-OE-printed-nanobeam-laser.pdf" target="_blank" rel="noopener">PDF</a></p>
+        <p class="pn">Heterogeneous integration of III&#8211;V nanolasers onto silica-on-silicon photonics via dry transfer printing, achieving CW lasing at telecom wavelengths.</p>
+      </li>
+      <li>
+        <p class="pt"><strong>Efficient photon collection from a reconfigurable photonic-crystal slab resonator operating at short wavelengths</strong> <span class="tag">corresponding author</span></p>
+        <p class="pm">I. Karnadi, Ju-Young Kim, B.-H. Ahn, H.-J. Lim, Y.-H. Lee · <em>J. Opt. Soc. Am. B</em> 29, 2669 (2012) <a class="pdfdl" href="publications/2012-Karnadi-JOSAB-reconfigurable-slab-resonator.pdf" target="_blank" rel="noopener">PDF</a></p>
+        <p class="pn">k-space principles for efficient evanescent coupling from slab nanocavities via 3D FDTD.</p>
+      </li>
+      <li>
+        <p class="pt"><strong>On-demand photonic crystal resonators</strong> <span class="tag">cover feature</span></p>
+        <p class="pm">M.-K. Kim, Ju-Young Kim, J.-H. Kang, B.-H. Ahn, Y.-H. Lee · <em>Laser &amp; Photonics Reviews</em> 5(4), 479 (2011) <a class="pdfdl" href="publications/2011-Kim-LPR-on-demand-PC-resonators-review-with-cover.pdf" target="_blank" rel="noopener">PDF</a></p>
+        <p class="pn">Invited review; fiber-coupling FDTD simulation featured on the front cover.</p>
+      </li>
+      <li>
+        <p class="pt"><strong>Reversibly stretchable and tunable terahertz metamaterial with wrinkled layouts</strong> <span class="tag">cover feature</span></p>
+        <p class="pm">S. Lee, S. Kim, T.-T. Kim, Y. Kim, M. Choi, S. H. Lee, Ju-Young Kim, B. Min · <em>Adv. Mater.</em> 24, 3491 (2012) <a class="pdfdl" href="publications/2012-Lee-AdvMater-stretchable-THz-metamaterial.pdf" target="_blank" rel="noopener">PDF</a></p>
+      </li>
+      <li>
+        <p class="pt"><strong>Classification and analysis of retinal interneurons by computational structure under natural scenes</strong></p>
+        <p class="pm">D. Lee, Juyoung Kim, S. A. Baccus · <em>bioRxiv</em> 2024.03.18.585364 (2024) <a class="pdfdl" href="https://doi.org/10.1101/2024.03.18.585364" target="_blank" rel="noopener">bioRxiv &#8599;</a></p>
+      </li>
+    </ol>
+
+    <h3 class="pub-group">Full list</h3>
+    <ol class="pubs full">
+      <li>D. Lee, <b>Juyoung Kim</b>, S. A. Baccus. "Classification and analysis of retinal interneurons by computational structure under natural scenes." <em>bioRxiv</em> 2024.03.18.585364 (2024). <a class="pdfdl" href="https://doi.org/10.1101/2024.03.18.585364" target="_blank" rel="noopener">bioRxiv</a></li>
+      <li>S. Lee and <b>Juyoung Kim</b>. "Design of optical metamaterial mirror with metallic nanoparticles for floating-gate graphene optoelectronic devices." <em>Optics Express</em> 23, 21809 (2015). <a class="pdfdl" href="publications/2015-Lee-OE-optical-metamaterial-mirror.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>S. Lee and <b>Juyoung Kim</b>. "Efficient confinement of ultraviolet light into a self-assembled dielectric colloidal monolayer on a flat aluminum film." <em>Applied Physics Express</em> 7, 112002 (2014). <a class="pdfdl" href="publications/2014-Lee-APEX-UV-confinement-colloidal-monolayer.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>I. Karnadi, J. Son, <b>Ju-Young Kim</b>, H. Jang, S. Lee, K. S. Kim, B. Min, Y.-H. Lee. "A printed nanobeam laser on a SiO&#8322;/Si substrate for low-threshold continuous-wave operation." <em>Optics Express</em> 22, 12115 (2014). <a class="pdfdl" href="publications/2014-Karnadi-OE-printed-nanobeam-laser.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>J. Hendrickson, A. Homyk, A. Scherer, &#8230; <b>J.-Y. Kim</b>, Y.-H. Lee, &#8230; H. M. Gibbs. "One-dimensional photonic crystal nanobeam cavities." In <em>Quantum Optics with Semiconductor Nanostructures</em>, Ch. 13, Woodhead Publishing (2012).</li>
+      <li>I. Karnadi, <b>Ju-Young Kim</b>, B.-H. Ahn, H.-J. Lim, Y.-H. Lee. "Efficient photon collection from a reconfigurable photonic crystal slab resonator operating at short wavelengths." <em>J. Opt. Soc. Am. B</em> 29(10), 2669 (2012). <a class="pdfdl" href="publications/2012-Karnadi-JOSAB-reconfigurable-slab-resonator.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>S. Lee, S. Kim, T.-T. Kim, Y. Kim, M. Choi, S. H. Lee, <b>Ju-Young Kim</b>, B. Min. "Reversibly stretchable and tunable terahertz metamaterial with wrinkled layouts." <em>Adv. Mater.</em> 24, 3491 (2012). <a class="pdfdl" href="publications/2012-Lee-AdvMater-stretchable-THz-metamaterial.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>M. Gehl, R. Gibson, J. Hendrickson, &#8230; <b>Ju-Young Kim</b>, Y.-H. Lee. "Effect of atomic layer deposition on the quality factor of silicon nanobeam cavities." <em>J. Opt. Soc. Am. B</em> 29, A55 (2012). <a class="pdfdl" href="publications/2012-Gehl-JOSAB-ALD-effect-nanobeam-Q.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>S. Kim, B.-H. Ahn, <b>Ju-Young Kim</b>, K.-Y. Jeong, K. S. Kim, Y.-H. Lee. "Nanobeam photonic band-edge lasers." <em>Optics Express</em> 19, 24055 (2011). <a class="pdfdl" href="publications/2011-SKim-OE-nanobeam-bandedge-lasers.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>M.-K. Kim, <b>Ju-Young Kim</b>, J.-H. Kang, B.-H. Ahn, Y.-H. Lee. "On-demand photonic crystal resonators." <em>Laser &amp; Photonics Rev.</em> 5(4), 479 (2011). <a class="pdfdl" href="publications/2011-Kim-LPR-on-demand-PC-resonators-review-with-cover.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>B. C. Richards, J. Hendrickson, &#8230; <b>J.-Y. Kim</b>, Y.-H. Lee. "Progress in growth, fabrication, and characterization of semiconductor photonic crystal nanocavities." <em>Phys. Status Solidi B</em> 248(4), 892 (2011). <a class="pdfdl" href="publications/2011-Richards-PSSB-PC-nanocavities-progress.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>B. C. Richards, J. Hendrickson, &#8230; <b>J.-Y. Kim</b>, Y.-H. Lee, G. Khitrova, H. M. Gibbs. "Characterization of 1D photonic crystal nanobeam cavities using curved microfiber." <em>Optics Express</em> 18, 20558 (2010). <a class="pdfdl" href="publications/2010-Richards-OE-1D-PC-nanobeam-curved-microfiber.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li><b>Ju-Young Kim</b>, M.-K. Kim, M.-K. Seo, S.-H. Kwon, J.-H. Shin, Y.-H. Lee. "Two-dimensionally relocatable microfiber-coupled photonic crystal resonator." <em>Optics Express</em> 17, 13009 (2009). <a class="pdfdl" href="publications/2009-Kim-OE-2D-relocatable-microfiber-PC-resonator.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>M.-K. Seo, J.-H. Kang, M.-K. Kim, B.-H. Ahn, <b>Ju-Young Kim</b>, K.-Y. Jeong, H.-G. Park, Y.-H. Lee. "Wavelength-scale photonic-crystal laser formed by electron-beam-induced nano-block deposition." <em>Optics Express</em> 17, 6790 (2009). <a class="pdfdl" href="publications/2009-Seo-OE-wavelength-scale-PC-laser.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>M.-K. Seo, H.-G. Park, J.-K. Yang, <b>Ju-Young Kim</b>, S.-H. Kim, Y.-H. Lee. "Controlled sub-nanometer tuning of a photonic crystal resonator by carbonaceous nano-dots." <em>Optics Express</em> 16, 9829 (2008). <a class="pdfdl" href="publications/2008-Seo-OE-controlled-subnm-tuning.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li>S.-K. Kim, H. K. Cho, K. K. Park, &#8230; <b>Ju-Young Kim</b>, Y.-H. Lee. "Angle-tuned, evanescently-decoupled reflector for high-efficiency red light-emitting diode." <em>Optics Express</em> 16, 6026 (2008). <a class="pdfdl" href="publications/2008-Kim-OE-angle-tuned-reflector-red-LED.pdf" target="_blank" rel="noopener">PDF</a></li>
+      <li><b>Ju-Young Kim</b>, Y.-H. Lee, et al. Silicon / InP photonic-crystal nano-resonator work &#8212; IPRM 2007 and iNOW 2012 proceedings. <a class="pdfdl" href="publications/2007-Kim-IPRM-proceedings.pdf" target="_blank" rel="noopener">IPRM 2007</a> <a class="pdfdl" href="publications/2012-Kim-iNOW-Si-InGaAsP-hybrid-nanocavity.pdf" target="_blank" rel="noopener">iNOW 2012</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="archive" class="section">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">05</span><h2>Career Archive</h2></div>
+    <p class="sec-intro">Competitive fellowships, grants, invitations, and professional service — the record behind the résumé.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-top"><span class="yr">2013</span><span class="chip">Fellowship</span></div>
+        <h3>Dean's Postdoctoral Fellowship</h3>
+        <p class="place">Stanford University School of Medicine</p>
+        <p>Competitively awarded by the School of Medicine selection committee for the project "Optical recording of diverse and identified neural populations in the retina," under mentor Prof. Stephen Baccus.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="yr">2014</span><span class="chip">Fellowship</span></div>
+        <h3>HFSP Long-Term Fellowship</h3>
+        <p class="place">Human Frontier Science Program</p>
+        <p>Application for "Functional study of diverse retinal neurons by optical recording and label-free cell identification" — bridging photonics and neuroscience at the Baccus Lab, Stanford.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="yr">2016</span><span class="chip">Grant</span></div>
+        <h3>Stanford Discovery Innovation Fund</h3>
+        <p class="place">Stanford University</p>
+        <p>Awarded funding (Discovery Innovation Grant) supporting optical recording of neural populations in the retina.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="yr">2013</span><span class="chip">Appointment</span></div>
+        <h3>Postdoctoral Scholar Offer</h3>
+        <p class="place">Stanford Neurobiology — Baccus Lab</p>
+        <p>Appointed to develop two-photon imaging of visually driven activity in the retina — the start of six years in computational vision.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="yr">2009</span><span class="chip">Invitation</span></div>
+        <h3>Visiting Researcher</h3>
+        <p class="place">University of Arizona — College of Optical Sciences</p>
+        <p>Invited by Prof. Hyatt Gibbs (QNOS group) to establish a fiber-taper loop spectroscopy apparatus for transmission measurements on 2D photonic-crystal slab nanocavities across 1300–1600 nm.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="yr">2017</span><span class="chip">Service</span></div>
+        <h3>Invited Reviewer</h3>
+        <p class="place">Optics Express (Optica / OSA)</p>
+        <p>Served as a peer reviewer for the journal, evaluating manuscripts in nanophotonics and optical devices.</p>
+      </div>
+    </div>
+    <p class="archive-note">Research across these years was supported by NIH grants (R01EY025087, R01EY022933, R01EB019005; vision core P30EY026877) through the Baccus Lab, and by a Stanford University Discovery Innovation Grant.</p>
+  </div>
+</section>
+
+<section class="section alt skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">06</span><h2>Capabilities</h2></div>
+    <div class="skill-grid">
+      <div class="skill-col">
+        <h3>Photonics Integration</h3>
+        <p>Semiconductor lasers · integrated SOI waveguides · optical resonators (DBR, Fabry–Perot, MRR, photonic crystal) · III–V (InP) &amp; silicon fabrication · evanescent &amp; grating coupling.</p>
+      </div>
+      <div class="skill-col">
+        <h3>Simulation</h3>
+        <p>FDTD (in-house &amp; Lumerical — Q-factor, coupling efficiency, mode dispersion, near-/far-field) · eigenmode solvers (Lumerical MODE, MPB) · Zemax (PSF, POP, ZPL).</p>
+      </div>
+      <div class="skill-col">
+        <h3>Test &amp; Characterization</h3>
+        <p>Laser characterization (L–L), laser scanning, pulse auto-/cross-correlation, CARS, IR imaging · SMF/PCF coupling, OSA, WDM, swept-laser spectroscopy, tapered-microfiber &amp; time-of-flight.</p>
+      </div>
+      <div class="skill-col">
+        <h3>Software &amp; Modeling</h3>
+        <p>Python · MATLAB · C/C++ · PyTorch · Git · agentic AI workflows.</p>
+      </div>
+    </div>
+    <div class="edu">
+      <h3>Education</h3>
+      <p><strong>PhD, Physics</strong> — KAIST, 2011 &nbsp;·&nbsp; <strong>MS, Physics</strong> — KAIST, 2007 &nbsp;·&nbsp; <strong>BS, Physics</strong> — KAIST, 2005</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="num">07</span><h2>Contact</h2></div>
+    <p class="contact-lede">Open to conversations on optical systems, XR display optics, and photonic device work.</p>
+    <div class="contact-links">
+      <a href="mailto:juyoungk33@gmail.com">juyoungk33@gmail.com</a>
+      <a href="https://goo.gl/biYZTG" target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+    <p class="foot">© <span id="yr"></span> Juyoung Kim · Campbell, California</p>
+  </div>
+</section>
+<script>
+document.getElementById("yr").textContent=new Date().getFullYear();
+document.querySelectorAll(".ytlite").forEach(function(el){
+  function play(){
+    var id=el.dataset.id, s=el.dataset.start||0;
+    var f=document.createElement("iframe");
+    f.src="https://www.youtube.com/embed/"+id+"?start="+s+"&autoplay=1&rel=0";
+    f.title="Optical BCI talk";f.frameBorder="0";f.allowFullscreen=true;
+    f.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    el.innerHTML="";el.appendChild(f);el.style.cursor="default";
+  }
+  el.addEventListener("click",play);
+  el.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();play();}});
+});
+</script>
+</body></html>
